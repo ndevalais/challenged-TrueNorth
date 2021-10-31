@@ -30,7 +30,6 @@ router.put('/', async (req, res, next) => {
     if (!body.uuid) throw boom.badRequest('UUID is empty, please enter a valid UUID');
     if (!body.task) throw boom.badRequest('Task is empty, please enter a valid Task');
     const data = await service.updateTask(body);
-    if (data) throw boom.notFound('Not Found');
     res.json(data);
   } catch (err) {
     next(err);
