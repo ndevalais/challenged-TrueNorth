@@ -2,6 +2,7 @@
  * Router task module
  */
 const express = require('express');
+const boom = require('@hapi/boom');
 const service = require("./service");
 const DEFAULT = 3;
 
@@ -26,8 +27,8 @@ router.get('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     const body = req.body;
-    if (!body.uuid) throw new Error('UUID is empty, please enter a valid UUID');
-    if (!body.task) throw new Error('Task is empty, please enter a valid Task');
+    if (!body.uuid) throw boom.badRequest('UUID is empty, please enter a valid UUID');
+    if (!body.task) throw boom.badRequest('Task is empty, please enter a valid Task');
     const data = await service.updateTask(body);
     res.json(data);
   } catch (err) {
