@@ -1,5 +1,6 @@
 # CHALLENGE
-# Create a task api that has 2 endpoint
+
+Create a task api that has 2 endpoint
 
 ## GET /tasks that generate N tasks (N is dynamic, default is 3).
 
@@ -14,10 +15,42 @@
 ○ This endpoint will only create a log entry
 
 
-##  Install
+##  Task
 
-npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D
+Task API \
 
+```http
+GET https://challenged-true-north.vercel.app/api/v1/task
+```
 
-https://challenged-true-north.vercel.app/api/v1/task
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `quantity` | `string` | **No Required**. Number of returned task records |
 
+## Responses
+
+Many API endpoints return the JSON representation of the resources created or edited. However, if an invalid request is submitted, or some other error occurs, Gophish returns a JSON response in the following format:
+
+```javascript
+{
+  "message" : string,
+  "success" : bool,
+  "data"    : [{
+        "uuid": string,
+        "task": string
+    },
+    ...]
+}
+```
+
+## Status Codes
+
+Gophish returns the following status codes in its API:
+
+| Status Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+| 201 | `CREATED` |
+| 400 | `BAD REQUEST` |
+| 404 | `NOT FOUND` |
+| 500 | `INTERNAL SERVER ERROR` |
