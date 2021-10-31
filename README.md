@@ -15,12 +15,55 @@ Create a task api that has 2 endpoint
 ○ This endpoint will only create a log entry
 
 
-##  Task
+##  GET Task
+
+Tasks that generate N tasks (N is dynamic, default is 3).
+
+```http
+GET https://challenged-true-north.vercel.app/api/v1/task?quantity=10
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `quantity` | `string` | **No Required**. Number of returned task records |
+
+## Responses
+
+si se envía una solicitud válida, devuelve una respuesta JSON en el siguiente formato:
+
+```javascript
+{
+  "status" : string,
+  "message" : string,
+  "result"    : [{
+        "uuid": string,
+        "task": string
+    },
+    ...]
+}
+```
+
+If an invalid request is sent or some other error occurs, it returns a JSON response in the following format:
+
+```javascript
+{
+  "statusCode" : number,
+  "error": string,
+  "message" : string,
+}
+```
+
+##  PUT Task
 
 Task API \
 
 ```http
-GET https://challenged-true-north.vercel.app/api/v1/task
+PUT http://localhost:3000/api/v1/task
+
+{
+    "uuid": "002c7fd25a8a7a885708cecbfdc54947eb4c7053",
+    "task": "quia ea numquam"
+}
 ```
 
 | Parameter | Type | Description |
@@ -33,9 +76,9 @@ Many API endpoints return the JSON representation of the resources created or ed
 
 ```javascript
 {
+  "status" : bool,
   "message" : string,
-  "success" : bool,
-  "data"    : [{
+  "result"    : [{
         "uuid": string,
         "task": string
     },
