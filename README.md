@@ -29,7 +29,7 @@ GET https://challenged-true-north.vercel.app/api/v1/task?quantity=10
 
 ## Responses
 
-si se envía una solicitud válida, devuelve una respuesta JSON en el siguiente formato:
+If a valid request is sent, it returns a JSON response in the following format:
 
 ```javascript
 {
@@ -72,17 +72,27 @@ PUT http://localhost:3000/api/v1/task
 
 ## Responses
 
-Many API endpoints return the JSON representation of the resources created or edited. However, if an invalid request is submitted, or some other error occurs, Gophish returns a JSON response in the following format:
+If a valid request is sent, it returns a JSON response in the following format:
 
 ```javascript
 {
-  "status" : bool,
+  "status" : string,
   "message" : string,
   "result"    : [{
         "uuid": string,
         "task": string
     },
     ...]
+}
+```
+
+If an invalid request is sent or some other error occurs, it returns a JSON response in the following format:
+
+```javascript
+{
+  "statusCode" : number,
+  "error": string,
+  "message" : string,
 }
 ```
 

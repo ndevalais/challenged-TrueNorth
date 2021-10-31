@@ -47,6 +47,7 @@ module.exports.getTasks = async ( quantity ) => {
 
 // Update Task
 module.exports.updateTask = async (...p) => {
+    console.table(p);
     return retorno = {
         status: 'OK',
         message: '',
