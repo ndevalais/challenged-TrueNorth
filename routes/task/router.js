@@ -10,12 +10,11 @@ router.get('/', async (req, res) => {
   res.json(data);
 });
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
+router.put('/', (req, res) => {
+  const body = req.body
   res.json({
-    id,
-    name: 'Product 2',
-    price: 2000
+    message: 'updated',
+    data: body
   });
 });
 
