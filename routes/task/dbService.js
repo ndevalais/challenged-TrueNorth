@@ -15,7 +15,7 @@ function requestTask(options) {
 
 module.exports.getTasks = async ( quantity ) => {
     try {
-        let url = `https://lorem-faker.vercel.app/api?quantity=${quantity}`;
+        let url = `https://lorem-faker.xvercel.app/api?quantity=${quantity}`;
         const retorno = {
             status: 'OK',
             message: '',
@@ -37,6 +37,8 @@ module.exports.getTasks = async ( quantity ) => {
         retorno.result = tasks;
         return retorno;
     } catch (err) {
+        retorno.status = 'error';
+        retorno.message = err.message;
         console.error(err)
     }
 }

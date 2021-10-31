@@ -2,7 +2,7 @@ const express = require('express');
 const routerApi = require('./routes');
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
     res.send('Hola mi server en express');
@@ -10,8 +10,8 @@ app.get('/', (req, res) => {
 
 routerApi(app);
 
-app.listen(port, () => {
-    console.log(`Port --> ${port}`);
+app.listen(PORT, () => {
+    console.log(`PORT --> ${PORT}`);
 });
 
 process.on( 'SIGTERM', function () {
