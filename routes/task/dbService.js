@@ -1,36 +1,37 @@
-var request = require('request');
+/**
+ *  Modulo de Servicios de Base de Datos
+ */
+const request = require('request');
 const hash = require('object-hash')
 
+// Fiuncion para ejecutar el request
 function requestTask(options) {
     return new Promise((resolve, reject) => {
         request(options, (error, response, body) => {
             if (error) reject(error);
-            if (response.statusCode != 200) {
-                reject('Invalid status code <' + response.statusCode + '>');
-            }
             resolve(body);
         });
     });
 }
 
+// Obtengo Tareas
 module.exports.getTasks = async ( quantity ) => {
+    const retorno = {
+        status: 'OK',
+        message: '',
+        result: [],
+        source: 'Task'
+    };
     try {
-        let url = `https://lorem-faker.xvercel.app/api?quantity=${quantity}`;
-        const retorno = {
-            status: 'OK',
-            message: '',
-            result: [],
-            code: 200,
-            source: 'Task'
-        };
-        var options = {
+        let url = `https://lorem-faker.vercel.app/api?quantity=${quantity}`;
+        let options = {
             'method': 'GET',
             'url': url,'headers': {
             }
         };
         let temp = await requestTask(options);
 
-        var tasks = JSON.parse( temp ).map(function (task, index, array) {
+        const tasks = JSON.parse( temp ).map(function (task, index, array) {
             const uuid = hash(task);
             return {uuid, task}; 
         });
@@ -40,5 +41,11 @@ module.exports.getTasks = async ( quantity ) => {
         retorno.status = 'error';
         retorno.message = err.message;
         console.error(err)
+        return retorno;
     }
+}
+
+// Actualizo Tareas
+module.exports.updateTask = async (...p) => {
+    return p;
 }

@@ -1,3 +1,6 @@
+/**
+ * Modulo de enrutamiento de Task
+ */
 const express = require('express');
 const service = require("./service");
 const DEFAULT = 3;
@@ -10,11 +13,12 @@ router.get('/', async (req, res) => {
   res.json(data);
 });
 
-router.put('/', (req, res) => {
+router.put('/', async (req, res) => {
   const body = req.body
+  const data = await service.updateTask(body);
   res.json({
     message: 'updated',
-    data: body
+    data
   });
 });
 
