@@ -1,5 +1,5 @@
 /**
- * Modulo de Servicios
+ * Service Module
  */
 const dbService = require("./dbService")
 

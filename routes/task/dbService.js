@@ -1,10 +1,10 @@
 /**
- *  Modulo de Servicios de Base de Datos
+ *  Database Service Module
  */
 const request = require('request');
 const hash = require('object-hash')
 
-// Fiuncion para ejecutar el request
+// Function: execute request
 function requestTask(options) {
     return new Promise((resolve, reject) => {
         request(options, (error, response, body) => {
@@ -14,7 +14,7 @@ function requestTask(options) {
     });
 }
 
-// Obtengo Tareas
+// get Tareas
 module.exports.getTasks = async ( quantity ) => {
     const retorno = {
         status: 'OK',
@@ -45,7 +45,12 @@ module.exports.getTasks = async ( quantity ) => {
     }
 }
 
-// Actualizo Tareas
+// Update Task
 module.exports.updateTask = async (...p) => {
-    return p;
+    return retorno = {
+        status: 'OK',
+        message: '',
+        result: p,
+        source: 'Task'
+    };
 }

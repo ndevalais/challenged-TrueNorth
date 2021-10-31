@@ -1,6 +1,7 @@
 const express = require('express');
 const routerApi = require('./routes');
 
+const { logErrors, errorHandler } = require('./middlewares/error.handler');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -12,6 +13,10 @@ app.get('/', (req, res) => {
 });
 
 routerApi(app);
+
+// Agrego Middleware de errores
+app.use(logErrors);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`PORT --> ${PORT}`);
